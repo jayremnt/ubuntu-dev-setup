@@ -1,0 +1,15 @@
+// git
+sudo add-apt-repository ppa:git-core/ppa
+sudo apt update
+sudo apt install git
+
+// config git auth
+git config --global user.name "Jayremnt"
+git config --global user.email "jayremnt@gmail.com"
+
+// nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+nvm install --lts
+
+// yarn
+npm i yarn -g
