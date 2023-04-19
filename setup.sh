@@ -96,3 +96,4 @@ eval "$(ssh-agent -s)"
 cat ~/.ssh/id_ed25519.pub
 
 # TODO: https://ubuntuhandbook.org/index.php/2022/04/disable-automatic-airplane-mode-ubuntu/
+sudo apt autoremove -y
