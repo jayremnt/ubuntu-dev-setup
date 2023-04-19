@@ -1,5 +1,0 @@
-// center applications
-gsettings set org.gnome.mutter center-new-windows true
-
-// show applications at top
-gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
