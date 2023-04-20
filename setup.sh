@@ -70,6 +70,9 @@ ibus restart
 
 # Config UI
 
+# Remove Home folder from desktop
+gsettings set org.gnome.shell.extensions.ding show-home false
+
 # Center applications
 gsettings set org.gnome.mutter center-new-windows true
 
