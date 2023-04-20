@@ -63,8 +63,10 @@ sudo apt install gnome-tweaks
 # Install Ibus Bamboo
 sudo add-apt-repository ppa:bamboo-engine/ibus-bamboo -y
 sudo apt-get update
-sudo apt-get install -y ibus-bamboo
+sudo apt-get install -y ibus ibus-bamboo --install-recommends
 ibus restart
+# Set default
+env DCONF_PROFILE=ibus dconf write /desktop/ibus/general/preload-engines "['BambooUs', 'Bamboo']" && gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'Bamboo')]"
 
 # TODO: https://dev.to/duhoang/ubuntu-create-postman-shortcut-31jp
 
