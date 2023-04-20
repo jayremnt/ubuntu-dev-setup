@@ -2,9 +2,6 @@
 
 # Install some CLIs
 
-# Install fuse
-sudo apt install -y fuse
-
 # Install curl
 sudo apt install -y curl
 
@@ -34,23 +31,23 @@ npm i yarn -g
 # Install Google Chrome
 echo "Installing Google Chrome..."
 sudo apt update -y
-if [ -e "${HOME}/Downloads/google-chrome-stable_current_amd64.deb" ]; then
+if [ -e $HOME/Downloads/google-chrome-stable_current_amd64.deb ]; then
   echo "Google Chrome deb file already exists. Installing..."
 else
   # Download Google Chrome deb file
-  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -P "${HOME}/Downloads/"
+  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -P $HOME/Downloads/
 fi
-sudo apt install -y "${HOME}"/Downloads/google-chrome-stable_current_amd64.deb
+sudo apt install -y $HOME/Downloads/google-chrome-stable_current_amd64.deb
 
 # Install Jetbrains Toolbox
 echo "Installing Jetbrains Toolbox"
-if [ -e "${HOME}/Downloads/jetbrains-toolbox-1.27.3.14493.tar.gz" ]; then
+if [ -e $HOME/Downloads/jetbrains-toolbox-1.27.3.14493.tar.gz ]; then
   echo "Jetbrains Toolbox file already exists. Installing...";
 else 
-  wget https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.27.3.14493.tar.gz -P "${HOME}/Downloads/"
+  wget https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.27.3.14493.tar.gz -P $HOME/Downloads/
 fi
 # Extract the tarball
-sudo tar xvf "${HOME}/Downloads/jetbrains-toolbox-*.tar.gz" -C /opt/
+sudo tar xvf $HOME/Downloads/jetbrains-toolbox-*.tar.gz -C /opt/
 sudo chmod +x /opt/jetbrains-toolbox-*/jetbrains-toolbox
 /opt/jetbrains-toolbox-*/jetbrains-toolbox
 
@@ -97,3 +94,4 @@ cat ~/.ssh/id_ed25519.pub
 
 # TODO: https://ubuntuhandbook.org/index.php/2022/04/disable-automatic-airplane-mode-ubuntu/
 sudo apt autoremove -y
+
