@@ -41,7 +41,7 @@ sudo apt install -y $HOME/Downloads/google-chrome-stable_current_amd64.deb
 
 # Install Webstorm
 echo "Installing Webstorm"
-if [ -e $HOME/Downloads/WebStorm-*.tar.gz ]; then
+if [ -e $HOME/Downloads/WebStorm-2023.1.tar.gz ]; then
   echo "Webstorm file already exists. Installing...";
 else 
   wget https://download-cdn.jetbrains.com/webstorm/WebStorm-2023.1.tar.gz -P $HOME/Downloads/
