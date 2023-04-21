@@ -39,17 +39,17 @@ else
 fi
 sudo apt install -y $HOME/Downloads/google-chrome-stable_current_amd64.deb
 
-# Install Jetbrains Toolbox
-echo "Installing Jetbrains Toolbox"
-if [ -e $HOME/Downloads/jetbrains-toolbox-1.27.3.14493.tar.gz ]; then
-  echo "Jetbrains Toolbox file already exists. Installing...";
+# Install Webstorm
+echo "Installing Webstorm"
+if [ -e $HOME/Downloads/WebStorm-*.tar.gz ]; then
+  echo "Webstorm file already exists. Installing...";
 else 
-  wget https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.27.3.14493.tar.gz -P $HOME/Downloads/
+  wget https://download-cdn.jetbrains.com/webstorm/WebStorm-2023.1.tar.gz -P $HOME/Downloads/
 fi
 # Extract the tarball
-sudo tar xvf $HOME/Downloads/jetbrains-toolbox-*.tar.gz -C /opt/
-sudo chmod +x /opt/jetbrains-toolbox-*/jetbrains-toolbox
-/opt/jetbrains-toolbox-*/jetbrains-toolbox
+sudo tar -xzf $HOME/Downloads/WebStorm-*.tar.gz -C /opt/ --progress -v
+sudo chmod +x /opt/WebStorm-*/bin/webstorm.sh
+gnome-terminal -- bash -c "/opt/WebStorm-*/bin/webstorm.sh"
 
 # Install Spotify
 echo "Installing Spotify"
