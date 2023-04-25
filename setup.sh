@@ -62,6 +62,10 @@ echo "Installing Discord"
 sudo apt update && sudo apt upgrade -y
 sudo snap install discord
 
+# Install Postman
+echo "Installing Postman"
+sudo snap install postman
+
 # Install Tweaks
 sudo apt install gnome-tweaks
 
@@ -72,8 +76,6 @@ sudo apt-get install -y ibus ibus-bamboo --install-recommends
 ibus restart
 # Set default
 env DCONF_PROFILE=ibus dconf write /desktop/ibus/general/preload-engines "['BambooUs', 'Bamboo']" && gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'Bamboo')]"
-
-# TODO: https://dev.to/duhoang/ubuntu-create-postman-shortcut-31jp
 
 # Config UI
 
