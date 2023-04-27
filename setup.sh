@@ -57,7 +57,11 @@ else
   wget https://download-cdn.jetbrains.com/webstorm/WebStorm-2023.1.tar.gz -P $HOME/Downloads/
 fi
 # Extract the tarball
-sudo tar -xzf $HOME/Downloads/WebStorm-*.tar.gz -C /opt/ --progress -v
+if find /opt -name 'WebStorm-*' -print -quit | grep -q .; then
+  echo "Webstorm already exists";
+else
+  sudo tar --checkpoint=.1000 --checkpoint-action=dot -xzf $HOME/Downloads/WebStorm-2023.1.tar.gz -C /opt/
+fi
 sudo chmod +x /opt/WebStorm-*/bin/webstorm.sh
 gnome-terminal -- bash -c "/opt/WebStorm-*/bin/webstorm.sh"
 
@@ -74,7 +78,37 @@ sudo snap install discord
 
 # Install Postman
 echo "Installing Postman..."
-sudo snap install postman
+if [ -e $HOME/Downloads/postman-linux-x64.tar.gz ]; then
+  echo "Postman file already exists. Installing...";
+else
+  wget https://dl.pstmn.io/download/latest/linux_64 -O $HOME/Downloads/postman-linux-x64.tar.gz
+fi
+# Extract the tarball
+if [ -e /opt/Postman ]; then
+  echo "Postman already exists";
+else
+  sudo tar --checkpoint=.1000 --checkpoint-action=dot -xzf $HOME/Downloads/postman-linux-x64.tar.gz -C /opt/
+fi
+# Create a desktop entry
+echo "Creating desktop entry..."
+if [ -e ~/.local/share/applications/postman.desktop ]; then
+  echo "Postman desktop entry already exists."
+else
+  # Create desktop entry
+  cat > ~/.local/share/applications/postman.desktop << EOL
+[Desktop Entry]
+Encoding=UTF-8
+Name=Postman
+Exec=/opt/Postman/Postman
+Icon=/opt/Postman/app/resources/app/assets/icon.png
+Path=/opt/Postman
+Terminal=false
+Type=Application
+Categories=Development;
+EOL
+
+  echo "Postman desktop entry created."
+fi
 
 # Install Tweaks
 echo "Installing Tweaks..."
