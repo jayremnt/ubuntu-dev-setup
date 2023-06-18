@@ -110,6 +110,15 @@ EOL
   echo "Postman desktop entry created."
 fi
 
+# Install TeamViewer
+echo "Installing TeamViewer..."
+if [ -e $HOME/Downloads/teamviewer_amd64.deb ]; then
+  echo "TeamViewer deb file already exists. Installing...";
+else
+  wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb -P $HOME/Downloads/
+fi
+sudo apt install -y $HOME/Downloads/teamviewer_amd64.deb
+
 # Install Tweaks
 echo "Installing Tweaks..."
 sudo apt install gnome-tweaks
