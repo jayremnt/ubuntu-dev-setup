@@ -16,6 +16,7 @@ sudo apt install -y git
 git config --global user.name "Jayremnt"
 git config --global user.email "jayremnt@gmail.com"
 # Generate SSH key
+# TODO: execute ssh-keygen without prompt
 ssh-keygen -t ed25519 -C "jayremnt@gmail.com"
 eval "$(ssh-agent -s)"
 cat ~/.ssh/id_ed25519.pub
@@ -64,6 +65,7 @@ else
 fi
 sudo chmod +x /opt/WebStorm-*/bin/webstorm.sh
 gnome-terminal -- bash -c "/opt/WebStorm-*/bin/webstorm.sh"
+# TODO: create desktop entry
 
 # Install Spotify
 echo "Installing Spotify..."
@@ -155,3 +157,14 @@ sudo sed -i 's/#\?FastConnectable *= *false/FastConnectable = true/g' /etc/bluet
 
 sudo apt autoremove -y
 # TODO: https://ubuntuhandbook.org/index.php/2022/04/disable-automatic-airplane-mode-ubuntu/
+
+# reboot
+echo "Reboot the system? (y/n)"
+read answer
+
+if [[ $answer == "y" || $answer == "Y" ]]; then
+    echo "Rebooting the system..."
+    sudo reboot
+else
+    echo "No reboot will be performed."
+fi
