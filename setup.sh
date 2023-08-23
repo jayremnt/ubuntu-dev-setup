@@ -59,21 +59,23 @@ else
 fi
 sudo apt install -y $HOME/Downloads/google-chrome-stable_current_amd64.deb
 
-# Install Webstorm
-echo "Installing Webstorm..."
+# Install WebStorm
+echo "Installing WebStorm..."
 if [ -e $HOME/Downloads/WebStorm-2023.1.tar.gz ]; then
-  echo "Webstorm file already exists. Installing...";
+  echo "WebStorm file already exists. Installing...";
 else 
   wget https://download-cdn.jetbrains.com/webstorm/WebStorm-2023.1.tar.gz -P $HOME/Downloads/
 fi
 # Extract the tarball
-if find /opt -name 'WebStorm-*' -print -quit | grep -q .; then
-  echo "Webstorm already exists";
+if [ -d /opt/WebStorm ]; then
+  echo "WebStorm already exists";
 else
-  sudo tar --checkpoint=.1000 --checkpoint-action=dot -xzf $HOME/Downloads/WebStorm-2023.1.tar.gz -C /opt/
+  sudo mkdir /opt/WebStorm
+  sudo tar --checkpoint=.1000 --checkpoint-action=dot -xzf $HOME/Downloads/WebStorm-2023.1.tar.gz -C /opt/WebStorm
 fi
-sudo chmod +x /opt/WebStorm-*/bin/webstorm.sh
-gnome-terminal -- bash -c "/opt/WebStorm-*/bin/webstorm.sh"
+sudo chown -R $USER:$USER /opt/WebStorm
+sudo chmod +x /opt/WebStorm/WebStorm-*/bin/webstorm.sh
+gnome-terminal -- bash -c "/opt/WebStorm/WebStorm-*/bin/webstorm.sh"
 # TODO: create desktop entry
 
 # Install Spotify
