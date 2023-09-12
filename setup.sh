@@ -45,6 +45,13 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
 && sudo apt update \
 && sudo apt install gh -y
 
+# Install Docker
+echo "Installing Docker..."
+curl -fsSL https://get.docker.com | bash
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+
 # Install Software
 echo "Installing software..."
 
@@ -63,7 +70,7 @@ sudo apt install -y $HOME/Downloads/google-chrome-stable_current_amd64.deb
 echo "Installing WebStorm..."
 if [ -e $HOME/Downloads/WebStorm-2023.1.tar.gz ]; then
   echo "WebStorm file already exists. Installing...";
-else 
+else
   wget https://download-cdn.jetbrains.com/webstorm/WebStorm-2023.1.tar.gz -P $HOME/Downloads/
 fi
 # Extract the tarball
@@ -122,15 +129,6 @@ EOL
 
   echo "Postman desktop entry created."
 fi
-
-# Install TeamViewer
-echo "Installing TeamViewer..."
-if [ -e $HOME/Downloads/teamviewer_amd64.deb ]; then
-  echo "TeamViewer deb file already exists. Installing...";
-else
-  wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb -P $HOME/Downloads/
-fi
-sudo apt install -y $HOME/Downloads/teamviewer_amd64.deb
 
 # Install Tweaks
 echo "Installing Tweaks..."
