@@ -1,13 +1,7 @@
 #!/bin/bash
-
-# Install some CLIs
-echo "Installing CLIs..."
-
-# Install curl
 echo "Installing curl..."
 sudo apt install -y curl
 
-# Install Git
 echo "Installing Git..."
 sudo add-apt-repository ppa:git-core/ppa -y
 sudo apt update
@@ -16,27 +10,22 @@ sudo apt install -y git
 git config --global user.name "Jayremnt"
 git config --global user.email "jayremnt@gmail.com"
 # Generate SSH key
-# TODO: execute ssh-keygen without prompt
-ssh-keygen -t ed25519 -C "jayremnt@gmail.com"
+ssh-keygen -q -t ed25519 -N 'jayremnt@gmail.com' <<< $'\ny' >/dev/null 2>&1
 eval "$(ssh-agent -s)"
 cat ~/.ssh/id_ed25519.pub
 
-# Install NVM
 echo "Installing NVM..."
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 export NVM_DIR="$HOME/.nvm"
 source "$NVM_DIR/nvm.sh"  # This loads nvm
 source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# shellcheck disable=SC1090
 source ~/.bashrc
 
-# Install NPM and Yarn
 echo "Installing NPM and Yarn..."
 nvm install 16
 nvm use 16
 npm i yarn -g
 
-# Install GitHub CLI
 echo "Installing GitHub CLI..."
 type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
@@ -45,17 +34,14 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
 && sudo apt update \
 && sudo apt install gh -y
 
-# Install Docker
 echo "Installing Docker..."
 curl -fsSL https://get.docker.com | bash
 sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp docker
 
-# Install Software
 echo "Installing software..."
 
-# Install Google Chrome
 echo "Installing Google Chrome..."
 sudo apt update -y
 if [ -e $HOME/Downloads/google-chrome-stable_current_amd64.deb ]; then
@@ -66,7 +52,6 @@ else
 fi
 sudo apt install -y $HOME/Downloads/google-chrome-stable_current_amd64.deb
 
-# Install WebStorm
 echo "Installing WebStorm..."
 if [ -e $HOME/Downloads/WebStorm-2023.1.tar.gz ]; then
   echo "WebStorm file already exists. Installing...";
@@ -85,18 +70,15 @@ sudo chmod +x /opt/WebStorm/WebStorm-*/bin/webstorm.sh
 gnome-terminal -- bash -c "/opt/WebStorm/WebStorm-*/bin/webstorm.sh"
 # TODO: create desktop entry
 
-# Install Spotify
 echo "Installing Spotify..."
 curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 sudo apt-get update && sudo apt-get install -y spotify-client
 
-# Install Discord
 echo "Installing Discord..."
 sudo apt update && sudo apt upgrade -y
 sudo snap install discord
 
-# Install Postman
 echo "Installing Postman..."
 if [ -e $HOME/Downloads/postman-linux-x64.tar.gz ]; then
   echo "Postman file already exists. Installing...";
@@ -130,11 +112,9 @@ EOL
   echo "Postman desktop entry created."
 fi
 
-# Install Tweaks
 echo "Installing Tweaks..."
 sudo apt install gnome-tweaks
 
-# Install Ibus Bamboo
 echo "Installing Ibus Bamboo..."
 sudo add-apt-repository ppa:bamboo-engine/ibus-bamboo -y
 sudo apt-get update
@@ -143,7 +123,6 @@ ibus restart
 # Set default
 env DCONF_PROFILE=ibus dconf write /desktop/ibus/general/preload-engines "['BambooUs', 'Bamboo']" && gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'Bamboo')]"
 
-# Config Ubuntu
 echo "Configuring Ubuntu..."
 
 # Remove Home folder from desktop
