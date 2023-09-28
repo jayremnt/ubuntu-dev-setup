@@ -1,25 +1,18 @@
-#!/bin/bash
-echo "Installing curl..."
-sudo apt install -y curl
+#!/usr/bin/env zsh
 
-echo "Installing Git..."
-sudo add-apt-repository ppa:git-core/ppa -y
-sudo apt update
-sudo apt install -y git
-# Git config
-git config --global user.name "Jayremnt"
-git config --global user.email "jayremnt@gmail.com"
-# Generate SSH key
-ssh-keygen -q -t ed25519 -N 'jayremnt@gmail.com' <<< $'\ny' >/dev/null 2>&1
-eval "$(ssh-agent -s)"
-cat ~/.ssh/id_ed25519.pub
+echo "Setting up terminal..."
+echo "Installing plugins..."
+git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/plugins/zsh-syntax-highlighting
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/themes/powerlevel10k
+
+echo "Syncing dotfiles..."
+sudo cp dotfiles/.zshrc ~/.zshrc
+sudo cp dotfiles/.p10k.zsh ~/.p10k.zsh
 
 echo "Installing NVM..."
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
-export NVM_DIR="$HOME/.nvm"
-source "$NVM_DIR/nvm.sh"  # This loads nvm
-source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-source ~/.bashrc
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+source ~/.zshrc
 
 echo "Installing NPM and Yarn..."
 nvm install 16
@@ -38,7 +31,6 @@ echo "Installing Docker..."
 curl -fsSL https://get.docker.com | bash
 sudo groupadd docker
 sudo usermod -aG docker $USER
-newgrp docker
 
 echo "Installing software..."
 
