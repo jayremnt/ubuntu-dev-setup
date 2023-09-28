@@ -79,13 +79,10 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  nvm
-  docker
   sudo
   zsh-autosuggestions
   zsh-syntax-highlighting
   dirhistory
-  copypath
 )
 
 source $ZSH/oh-my-zsh.sh
