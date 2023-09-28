@@ -1,4 +1,5 @@
 #!/bin/bash
+
 echo "Installing curl..."
 sudo apt install -y curl
 
@@ -13,6 +14,16 @@ git config --global user.email "jayremnt@gmail.com"
 ssh-keygen -q -t ed25519 -N 'jayremnt@gmail.com' <<< $'\ny' >/dev/null 2>&1
 eval "$(ssh-agent -s)"
 cat ~/.ssh/id_ed25519.pub
+
+echo "Setting up terminal..."
+echo "Installing plugins..."
+git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-syntax-highlighting
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/themes/powerlevel10k
+
+echo "Syncing dotfiles..."
+sudo cp dotfiles/.zshrc ~/.zshrc
+sudo cp dotfiles/.p10k.zsh ~/.p10k.zsh
 
 echo "Installing NVM..."
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
