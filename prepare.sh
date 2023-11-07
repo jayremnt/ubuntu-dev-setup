@@ -11,7 +11,7 @@ sudo apt install -y git
 git config --global user.name "Jayremnt"
 git config --global user.email "jayremnt@gmail.com"
 # Generate SSH key
-ssh-keygen -q -t ed25519 -N 'jayremnt@gmail.com' <<< $'\ny' >/dev/null 2>&1
+ssh-keygen -q -t ed25519 <<< $'\ny' >/dev/null 2>&1
 eval "$(ssh-agent -s)"
 cat ~/.ssh/id_ed25519.pub
 
