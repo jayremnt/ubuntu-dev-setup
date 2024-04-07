@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+DOWNLOADS_DIR=$HOME/Downloads
+
 echo "Setting up terminal..."
 echo "Installing plugins..."
 git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions
@@ -36,26 +38,18 @@ echo "Installing software..."
 
 echo "Installing Google Chrome..."
 sudo apt update -y
-if [ -e $HOME/Downloads/google-chrome-stable_current_amd64.deb ]; then
-  echo "Google Chrome deb file already exists. Installing..."
-else
-  # Download Google Chrome deb file
-  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -P $HOME/Downloads/
-fi
-sudo apt install -y $HOME/Downloads/google-chrome-stable_current_amd64.deb
+# Download Google Chrome deb file
+wget -N https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -P $DOWNLOADS_DIR
+sudo apt install -y $DOWNLOADS_DIR/google-chrome-stable_current_amd64.deb
 
 echo "Installing WebStorm..."
-if [ -e $HOME/Downloads/WebStorm-2023.1.tar.gz ]; then
-  echo "WebStorm file already exists. Installing...";
-else
-  wget https://download-cdn.jetbrains.com/webstorm/WebStorm-2023.1.tar.gz -P $HOME/Downloads/
-fi
+wget -N https://download-cdn.jetbrains.com/webstorm/WebStorm-2023.1.tar.gz -P $DOWNLOADS_DIR
 # Extract the tarball
 if [ -d /opt/WebStorm ]; then
   echo "WebStorm already exists";
 else
   sudo mkdir /opt/WebStorm
-  sudo tar --checkpoint=.1000 --checkpoint-action=dot -xzf $HOME/Downloads/WebStorm-2023.1.tar.gz -C /opt/WebStorm
+  sudo tar --checkpoint=.1000 --checkpoint-action=dot -xzf $DOWNLOADS_DIR/WebStorm-2023.1.tar.gz -C /opt/WebStorm
 fi
 sudo chown -R $USER:$USER /opt/WebStorm
 sudo chmod +x /opt/WebStorm/WebStorm-*/bin/webstorm.sh
@@ -70,16 +64,12 @@ sudo apt update && sudo apt upgrade -y
 sudo snap install discord
 
 echo "Installing Postman..."
-if [ -e $HOME/Downloads/postman-linux-x64.tar.gz ]; then
-  echo "Postman file already exists. Installing...";
-else
-  wget https://dl.pstmn.io/download/latest/linux_64 -O $HOME/Downloads/postman-linux-x64.tar.gz
-fi
+wget https://dl.pstmn.io/download/latest/linux_64 -O $DOWNLOADS_DIR/postman-linux-x64.tar.gz
 # Extract the tarball
 if [ -e /opt/Postman ]; then
   echo "Postman already exists";
 else
-  sudo tar --checkpoint=.1000 --checkpoint-action=dot -xzf $HOME/Downloads/postman-linux-x64.tar.gz -C /opt/
+  sudo tar --checkpoint=.1000 --checkpoint-action=dot -xzf $DOWNLOADS_DIR/postman-linux-x64.tar.gz -C /opt/
 fi
 # Create a desktop entry
 echo "Creating desktop entry..."
