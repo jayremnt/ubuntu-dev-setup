@@ -7,11 +7,11 @@ GNOME_SHELL_EXTENSIONS=(
   gnome-ui-tune@itstime.tech
   user-theme@gnome-shell-extensions.gcampax.github.com
 )
-WHITESUR_CONFIG_DIR=$HOME/projects1/others/whitesur
+WHITESUR_CONFIG_DIR=$HOME/projects/others/whitesur
 WHITESUR_THEME_DIR=$WHITESUR_CONFIG_DIR/WhiteSur-gtk-theme
 WHITESUR_WALLPAPERS_DIR=$WHITESUR_CONFIG_DIR/WhiteSur-wallpapers
 WHITESUR_ICON_THEME=$WHITESUR_CONFIG_DIR/WhiteSur-icon-theme
-DOWNLOADS_DIR=$HOME/Downloads/
+DOWNLOADS_DIR=$HOME/Downloads
 
 # Download extensions
 sudo apt install git gnome-shell-extension-manager
@@ -28,11 +28,11 @@ $WHITESUR_THEME_DIR/install.sh -c Dark -t purple -i ubuntu -m -N stable -l --nor
 sudo $WHITESUR_THEME_DIR/tweaks.sh -g -N
 
 # Set WhiteSur icon theme
-git clone git@github.com:vinceliuice/WhiteSur-icon-theme.git $WHITESUR_ICON_THEME
+git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git $WHITESUR_ICON_THEME
 $WHITESUR_ICON_THEME/install.sh
 
 # Set WhiteSur dynamic wallpaper
-git clone git@github.com:vinceliuice/WhiteSur-wallpapers.git $WHITESUR_WALLPAPERS_DIR
+git clone https://github.com/vinceliuice/WhiteSur-wallpapers.git $WHITESUR_WALLPAPERS_DIR
 sudo $WHITESUR_WALLPAPERS_DIR/install-gnome-backgrounds.sh
 
 # Set MacOS cursor
