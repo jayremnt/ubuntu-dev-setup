@@ -11,6 +11,7 @@ To use these scripts, follow these steps:
 - First, run the `prepare.sh` script in your terminal: `chmod +x prepare.sh && ./prepare.sh`
 - Log out and log back in: `gnome-session-quit --no-prompt`
 - Run the `setup.sh` script in your terminal: `chmod +x setup.sh && ./setup.sh`
+- Optionally, run the `install_macos_theme.sh` script to install the macOS theme: `chmod +x install_macos_theme.sh && ./install_macos_theme.sh`
 
 ## Note
 
