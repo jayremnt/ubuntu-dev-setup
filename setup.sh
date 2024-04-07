@@ -119,6 +119,7 @@ gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false
 gsettings set org.gnome.shell.extensions.dash-to-dock show-trash false
 gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 28
 gsettings set org.gnome.shell favorite-apps "[]"
+gsettings set org.gnome.settings-daemon.plugins.media-keys home "['<Super>e']"
 
 # Fast Bluetooth Connection
 sudo sed -i 's/#\?FastConnectable *= *false/FastConnectable = true/g' /etc/bluetooth/main.conf
