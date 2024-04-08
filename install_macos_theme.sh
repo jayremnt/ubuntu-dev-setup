@@ -37,7 +37,7 @@ sudo $WHITESUR_THEME_DIR/tweaks.sh -g -N
 
 # Install WhiteSur icon theme
 git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git $WHITESUR_ICON_THEME_DIR
-$WHITESUR_ICON_THEME_DIR/install.sh
+$WHITESUR_ICON_THEME_DIR/install.sh -t purple -b
 
 # Install WhiteSur dynamic wallpaper
 git clone https://github.com/vinceliuice/WhiteSur-wallpapers.git $WHITESUR_WALLPAPERS_DIR
@@ -55,8 +55,8 @@ mkdir -p $HOME/.fonts
 cp $SF_PRO_FONTS_DIR/SF-Pro-Rounded-Regular.otf $SF_MONO_FONT_DIR/SFMono-Regular.otf $HOME/.fonts
 
 # Play with Tweaks
-dconf write /org/gnome/desktop/interface/icon-theme "'WhiteSur'"
-dconf write /org/gnome/shell/extensions/user-theme/name "'WhiteSur-Dark-solid-purple'"
+dconf write /org/gnome/desktop/interface/icon-theme "'WhiteSur-purple'"
+dconf write /org/gnome/shell/extensions/user-theme/name "'WhiteSur-Dark-purple'"
 dconf write /org/gnome/desktop/interface/gtk-theme "'WhiteSur-Dark-purple'"
 dconf write /org/gnome/desktop/background/picture-uri "'file:///usr/share/backgrounds/Monterey/Monterey-timed.xml'"
 dconf write /org/gnome/desktop/interface/clock-show-weekday true
@@ -71,7 +71,7 @@ dconf write /org/gnome/desktop/wm/preferences/titlebar-font "'SF Pro Rounded Bol
 
 # Config Dock
 dconf write /org/gnome/shell/extensions/dash-to-dock/show-show-apps-button false
-dconf write /org/gnome/shell/favorite-apps "['org.gnome.Nautilus.desktop', 'google-chrome.desktop', 'jetbrains-webstorm.desktop', 'org.gnome.Settings.desktop']"
+dconf write /org/gnome/shell/favorite-apps "['google-chrome.desktop', 'jetbrains-webstorm.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Settings.desktop']"
 
 # Config terminal
 terminal_profiles=$(dconf list /org/gnome/terminal/legacy/profiles:/)
