@@ -133,12 +133,9 @@ sudo apt autoremove -y
 # TODO: https://ubuntuhandbook.org/index.php/2022/04/disable-automatic-airplane-mode-ubuntu/
 
 # reboot
-echo "Reboot the system? (y/n)"
-read answer
+echo "Reboot? (y/n)"
+read -k1 answer
 
 if [[ $answer == "y" || $answer == "Y" ]]; then
-    echo "Rebooting the system..."
-    sudo reboot
-else
-    echo "No reboot will be performed."
+  reboot
 fi

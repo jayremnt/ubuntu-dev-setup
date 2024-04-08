@@ -76,12 +76,9 @@ dconf write /org/gnome/terminal/legacy/profiles:/$first_profile_id/default-size-
 dconf write /org/gnome/terminal/legacy/profiles:/$first_profile_id/default-size-rows 43
 
 # reboot
-echo "Reboot the system? (y/n)"
-read answer
+echo "Logout? (y/n)"
+read -k1 answer
 
 if [[ $answer == "y" || $answer == "Y" ]]; then
-    echo "Rebooting the system..."
-    sudo reboot
-else
-    echo "No reboot will be performed."
+  gnome-session-quit --no-prompt
 fi
