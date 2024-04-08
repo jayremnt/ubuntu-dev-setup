@@ -111,7 +111,7 @@ gsettings set org.gnome.shell.extensions.ding show-home false
 # Center applications
 gsettings set org.gnome.mutter center-new-windows true
 
-# Config Dash to Dock
+# Config Dock
 gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
 gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
@@ -119,7 +119,11 @@ gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false
 gsettings set org.gnome.shell.extensions.dash-to-dock show-trash false
 gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 28
 gsettings set org.gnome.shell favorite-apps "[]"
+
+# Config Home folder shortcut
 gsettings set org.gnome.settings-daemon.plugins.media-keys home "['<Super>e']"
+
+# Show hidden files
 gsettings set org.gtk.gtk4.Settings.FileChooser show-hidden true
 
 # Fast Bluetooth Connection

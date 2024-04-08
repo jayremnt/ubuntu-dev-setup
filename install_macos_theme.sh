@@ -24,7 +24,7 @@ done
 
 # Set WhiteSur theme
 git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git --depth=1 $WHITESUR_THEME_DIR
-$WHITESUR_THEME_DIR/install.sh -c Dark -t purple -i ubuntu -m -N stable -l --normal --round -c Light
+$WHITESUR_THEME_DIR/install.sh -c Dark -t purple -m -N stable -l --normal --round
 sudo $WHITESUR_THEME_DIR/tweaks.sh -g -N
 
 # Set WhiteSur icon theme
@@ -50,3 +50,7 @@ dconf write /org/gnome/desktop/interface/clock-show-date true
 dconf write /org/gnome/desktop/interface/clock-show-seconds true
 dconf write /org/gnome/desktop/wm/preferences/button-layout "'close,minimize,maximize:'"
 dconf write /org/gnome/desktop/interface/cursor-theme "'macOS-BigSur-White'"
+
+# Config Dock
+dconf write /org/gnome/shell/extensions/dash-to-dock/show-show-apps-button false
+dconf write /org/gnome/shell/favorite-apps ['org.gnome.Nautilus.desktop', 'google-chrome.desktop', 'jetbrains-webstorm.desktop', 'org.gnome.Settings.desktop']
