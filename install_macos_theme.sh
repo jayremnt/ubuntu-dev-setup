@@ -20,7 +20,7 @@ sudo apt install git gnome-shell-extension-manager
 
 for i in "${GNOME_SHELL_EXTENSIONS[@]}"
 do
-  busctl --user call org.gnome.Shell.Extensions /org/gnome/Shell/Extensions org.gnome.Shell.Extensions InstallRemoteExtension s ${i}
+  busctl --user --timeout=25 call org.gnome.Shell.Extensions /org/gnome/Shell/Extensions org.gnome.Shell.Extensions InstallRemoteExtension s ${i} --expect-reply=yes --timeout=25
   gnome-extensions enable ${i}
 done
 
@@ -66,3 +66,22 @@ dconf write /org/gnome/desktop/wm/preferences/titlebar-font "'SF Pro Rounded Bol
 # Config Dock
 dconf write /org/gnome/shell/extensions/dash-to-dock/show-show-apps-button false
 dconf write /org/gnome/shell/favorite-apps "['org.gnome.Nautilus.desktop', 'google-chrome.desktop', 'jetbrains-webstorm.desktop', 'org.gnome.Settings.desktop']"
+
+# Config terminal
+terminal_profiles=$(dconf list /org/gnome/terminal/legacy/profiles:/)
+first_profile_id=$(echo $terminal_profiles | awk '{print $1}' | sed 's|/||')
+dconf write /org/gnome/terminal/legacy/profiles:/$first_profile_id/use-system-font false
+dconf write /org/gnome/terminal/legacy/profiles:/$first_profile_id/font "'SF Mono 12'"
+dconf write /org/gnome/terminal/legacy/profiles:/$first_profile_id/default-size-columns 132
+dconf write /org/gnome/terminal/legacy/profiles:/$first_profile_id/default-size-rows 43
+
+# reboot
+echo "Reboot the system? (y/n)"
+read answer
+
+if [[ $answer == "y" || $answer == "Y" ]]; then
+    echo "Rebooting the system..."
+    sudo reboot
+else
+    echo "No reboot will be performed."
+fi
