@@ -13,6 +13,7 @@ WHITESUR_WALLPAPERS_DIR=$MACOS_CONFIG_DIR/WhiteSur-wallpapers
 WHITESUR_ICON_THEME_DIR=$MACOS_CONFIG_DIR/WhiteSur-icon-theme
 SF_PRO_FONTS_DIR=$MACOS_CONFIG_DIR/San-Francisco-Pro-Fonts
 SF_MONO_FONT_DIR=$MACOS_CONFIG_DIR/SF-Mono-Font
+ROUNDED_WINDOW_CORNERS_DIR=$MACOS_CONFIG_DIR/rounded-window-corners
 DOWNLOADS_DIR=$HOME/Downloads
 
 # Download extensions
@@ -24,20 +25,25 @@ do
   gnome-extensions enable ${i}
 done
 
-# Set WhiteSur theme
+# Install Rounded Window Corners extension
+git clone https://github.com/garaevdi/rounded-window-corners.git $ROUNDED_WINDOW_CORNERS_DIR
+cd $ROUNDED_WINDOW_CORNERS_DIR
+yarn && yarn ext:install
+
+# Install WhiteSur theme
 git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git --depth=1 $WHITESUR_THEME_DIR
 $WHITESUR_THEME_DIR/install.sh -c Dark -t purple -m -N stable -l --normal --round
 sudo $WHITESUR_THEME_DIR/tweaks.sh -g -N
 
-# Set WhiteSur icon theme
+# Install WhiteSur icon theme
 git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git $WHITESUR_ICON_THEME_DIR
 $WHITESUR_ICON_THEME_DIR/install.sh
 
-# Set WhiteSur dynamic wallpaper
+# Install WhiteSur dynamic wallpaper
 git clone https://github.com/vinceliuice/WhiteSur-wallpapers.git $WHITESUR_WALLPAPERS_DIR
 sudo $WHITESUR_WALLPAPERS_DIR/install-gnome-backgrounds.sh
 
-# Set MacOS cursor
+# Install MacOS cursor
 wget -P $DOWNLOADS_DIR -O $DOWNLOADS_DIR/apple_cursor.tar.gz https://github.com/ful1e5/apple_cursor/releases/download/v2.0.0/macOS-BigSur-White.tar.gz
 tar -xvf $DOWNLOADS_DIR/apple_cursor.tar.gz -C $DOWNLOADS_DIR
 cp -rf $DOWNLOADS_DIR/macOS-* $HOME/.icons/
