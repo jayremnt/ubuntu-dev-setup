@@ -59,10 +59,14 @@ gnome-terminal -- bash -c "/opt/WebStorm/WebStorm-*/bin/webstorm.sh"
 echo "Installing Spotify..."
 sudo snap install spotify
 
+echo "Installing Telegram..."
+sudo snap install telegram-desktop
+
 echo "Installing Discord..."
 sudo apt update && sudo apt upgrade -y
 sudo snap install discord
 
+# TODO: Why this need to enter password?
 echo "Installing Postman..."
 wget https://dl.pstmn.io/download/latest/linux_64 -O $DOWNLOADS_DIR/postman-linux-x64.tar.gz
 # Extract the tarball
